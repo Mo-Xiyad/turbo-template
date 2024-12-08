@@ -3,6 +3,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "@/hooks/useColorScheme.web";
 import { TRPCProvider } from "@/trpc/api";
+import { tokenCache } from "@/utils/cache-tocken";
 import { ClerkLoaded, ClerkProvider } from "@clerk/clerk-expo";
 import {
   DarkTheme,
@@ -23,7 +24,7 @@ export default function RootLayout() {
     throw new Error("ExpoClerkPublicKey not found");
   }
   return (
-    <ClerkProvider publishableKey={publicKey}>
+    <ClerkProvider publishableKey={publicKey} tokenCache={tokenCache}>
       <ClerkLoaded>
         <TRPCProvider>
           <ThemeProvider
