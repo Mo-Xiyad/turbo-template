@@ -51,7 +51,8 @@
     "AUTH_DISCORD_SECRET",
     "AUTH_REDIRECT_PROXY_URL",
     "AUTH_SECRET",
-    "PORT"
+    "PORT",
+    "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY"
   ],
   "globalPassThroughEnv": [
     "NODE_ENV",
@@ -59,6 +60,7 @@
     "VERCEL",
     "VERCEL_ENV",
     "VERCEL_URL",
+    "EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY",
     "npm_lifecycle_event"
   ]
 }

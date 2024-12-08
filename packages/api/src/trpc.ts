@@ -14,7 +14,6 @@ export const createTRPCContext = async (opts: {
   const authToken = opts.headers.get("Authorization") ?? null;
 
   const source = opts.headers.get("x-trpc-source") ?? "unknown";
-
   const { getToken } = opts.auth;
   // const token = getToken ? await getToken({ template: "supabase" }) : null;
 

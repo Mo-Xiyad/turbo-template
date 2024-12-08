@@ -1,3 +1,4 @@
+import Constants from "expo-constants";
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "@/hooks/useColorScheme.web";
@@ -12,30 +13,17 @@ import {
 import "react-native-reanimated";
 import "../styles.css";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-// SplashScreen.preventAutoHideAsync();
-
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
-  // const [loaded] = useFonts({
-  //   SpaceMono: require("../../assets/fonts/SpaceMono-Regular.ttf"),
-  // });
+  const publicKey = Constants.expoConfig?.extra
+    ?.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY as string;
 
-  // useEffect(() => {
-  //   if (loaded) {
-  //     SplashScreen.hideAsync();
-  //   }
-  // }, [loaded]);
-
-  // if (!loaded) {
-  //   return null;
-  // }
-
-  const EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY =
-    "pk_test_bm90YWJsZS1veC05OS5jbGVyay5hY2NvdW50cy5kZXYk";
+  if (!publicKey) {
+    throw new Error("ExpoClerkPublicKey not found");
+  }
   return (
-    <ClerkProvider publishableKey={EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY}>
+    <ClerkProvider publishableKey={publicKey}>
       <ClerkLoaded>
         <TRPCProvider>
           <ThemeProvider
